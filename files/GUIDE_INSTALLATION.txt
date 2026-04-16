@@ -140,3 +140,4 @@ wedding-game/
 ├── firestore.rules     ← Règles de sécurité base de données
 ├── storage.rules       ← Règles de sécurité stockage photos
 └── package.json
+ test 
