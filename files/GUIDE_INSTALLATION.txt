@@ -1,0 +1,142 @@
+╔══════════════════════════════════════════════════════════════════╗
+║        GUIDE D'INSTALLATION - Elina & Marius Wedding Game        ║
+║              (Pour débutant complet, étape par étape)            ║
+╚══════════════════════════════════════════════════════════════════╝
+
+Temps total estimé : 30 à 45 minutes
+Aucune connaissance requise, suis juste les étapes !
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉTAPE 1 — Créer un compte Firebase (gratuit)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Va sur : https://firebase.google.com
+2. Clique sur "Commencer" ou "Get started"
+3. Connecte-toi avec ton compte Google
+4. Clique sur "Créer un projet"
+5. Nomme-le : elina-marius-wedding (ou n'importe quoi)
+6. Désactive Google Analytics (pas besoin) → Clique "Créer le projet"
+7. Attends quelques secondes → Clique "Continuer"
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉTAPE 2 — Activer les services Firebase
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+A) Activer l'authentification :
+   1. Dans le menu gauche → clique "Authentication"
+   2. Clique "Commencer"
+   3. Dans l'onglet "Sign-in method" → clique "Email/Password"
+   4. Active le premier switch → Sauvegarde
+
+B) Activer la base de données (Firestore) :
+   1. Dans le menu gauche → clique "Firestore Database"
+   2. Clique "Créer une base de données"
+   3. Choisis "Démarrer en mode test" → Suivant
+   4. Choisis la région "eur3 (europe-west)" → Activer
+
+C) Activer le stockage photos (Storage) :
+   1. Dans le menu gauche → clique "Storage"
+   2. Clique "Commencer"
+   3. Choisis "Démarrer en mode test" → Suivant
+   4. Même région → Terminé
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉTAPE 3 — Récupérer ta clé Firebase et la coller dans le code
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Dans Firebase, clique sur l'icône ⚙️ (engrenage) → "Paramètres du projet"
+2. Descends jusqu'à "Vos applications"
+3. Clique sur l'icône </> (Web)
+4. Nomme l'app : wedding-game → Clique "Enregistrer l'application"
+5. Tu veras un bloc de code avec "firebaseConfig = { ... }"
+6. COPIE toutes les valeurs (apiKey, authDomain, etc.)
+
+7. Ouvre le fichier : src/firebase.js
+8. Remplace chaque valeur :
+   - "REMPLACE_PAR_TON_API_KEY"        → ta vraie apiKey
+   - "REMPLACE_PAR_TON_AUTH_DOMAIN"    → ton authDomain
+   - "REMPLACE_PAR_TON_PROJECT_ID"     → ton projectId
+   - "REMPLACE_PAR_TON_STORAGE_BUCKET" → ton storageBucket
+   - "REMPLACE_PAR_TON_MESSAGING_SENDER_ID" → ton messagingSenderId
+   - "REMPLACE_PAR_TON_APP_ID"         → ton appId
+
+Exemple de ce que ça doit ressembler :
+   apiKey: "AIzaSyABCDEF123456789",
+   authDomain: "elina-marius-wedding.firebaseapp.com",
+   projectId: "elina-marius-wedding",
+   ...
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉTAPE 4 — Appliquer les règles de sécurité Firebase
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+A) Règles Firestore :
+   1. Dans Firebase → Firestore Database → onglet "Règles"
+   2. Efface tout et colle le contenu du fichier : firestore.rules
+   3. Clique "Publier"
+
+B) Règles Storage :
+   1. Dans Firebase → Storage → onglet "Règles"
+   2. Efface tout et colle le contenu du fichier : storage.rules
+   3. Clique "Publier"
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ÉTAPE 5 — Mettre en ligne sur Vercel (gratuit)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Va sur : https://github.com et crée un compte (gratuit)
+
+2. Crée un nouveau repository :
+   - Clique le "+" en haut à droite → "New repository"
+   - Nom : elina-marius-wedding
+   - Laisse tout par défaut → "Create repository"
+
+3. Upload les fichiers :
+   - Clique "uploading an existing file"
+   - Glisse-dépose TOUT le dossier du projet
+   - Clique "Commit changes"
+
+4. Va sur : https://vercel.com
+   - Crée un compte avec GitHub
+   - Clique "Add New Project"
+   - Sélectionne ton repository "elina-marius-wedding"
+   - Clique "Deploy" (Vercel détecte automatiquement React)
+
+5. Attends 2 minutes → Vercel te donne une URL du style :
+   https://elina-marius-wedding.vercel.app
+
+🎉 C'EST EN LIGNE ! Envoie ce lien à tous les invités !
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPTIONNEL — Créer un QR code pour le mariage
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Va sur : https://www.qr-code-generator.com
+2. Colle ton URL Vercel
+3. Génère et télécharge le QR code
+4. Imprime-le sur les tables ou le programme du mariage !
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BESOIN D'AIDE ?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Si tu bloques sur une étape, reviens sur Claude et explique
+où tu es bloqué, je t'aiderai à débloquer ça !
+
+Structure des fichiers :
+wedding-game/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.js          ← Le code principal du jeu
+│   ├── firebase.js     ← ⚠️ À MODIFIER avec tes clés Firebase
+│   └── index.js
+├── firestore.rules     ← Règles de sécurité base de données
+├── storage.rules       ← Règles de sécurité stockage photos
+└── package.json
